@@ -2,10 +2,11 @@ import Head from 'next/head';
 import Image from 'next/image';
 import { Inter } from '@next/font/google';
 import styles from '../styles/Home.module.css';
+import Link from 'next/link';
 
 const inter = Inter({ subsets: ['latin'] });
 
-export default function Home() {
+export default function Home({ data }) {
   return (
     <>
       <Head>
@@ -17,25 +18,21 @@ export default function Home() {
       <header>
         <nav>
           <img />
-          <a href='/'>Home</a>
-          <a href='/events'>Events</a>
-          <a href='/about-us'>About us</a>
+          <Link href='/'>Home</Link>
+          <Link href='/events'>Events</Link>
+          <Link href='/about-us'>About us</Link>
         </nav>
       </header>
 
       <main className={styles.main}>
-        <a href=''>
-          <h2>Events in London</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore e</p>
-        </a>
-        <a href=''>
-          <h2>Events in San Francisco</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore e</p>
-        </a>
-        <a href=''>
-          <h2>Events in Barcelona</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore e</p>
-        </a>
+        {data.map((ev) => (
+          <Link href={`/events/${ev.id}`} key={ev.id}>
+            <Image width={200} height={200} src={ev.image} alt={ev.title} />
+            <h2>{ev.title}</h2>
+            <p>{ev.description}</p>
+          </Link>
+        ))}
+
       </main>
 
       <footer className={styles.footer}>
@@ -43,4 +40,15 @@ export default function Home() {
       </footer>
     </>
   );
+}
+
+export async function getServerSideProps() {
+  const { events_categories } = await import('/data/data.json');
+
+  return {
+    props:{
+      data: events_categories
+    }
+  };
+
 }
