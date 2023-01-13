@@ -4,10 +4,21 @@ const EventPage = ({data}) => {
   console.log(data);
   return (
     <div>
-      <Image src={data.image} width={500} height={500} alt={data.title} />
       <h1>{data.title}</h1>
+      <Image
+        width={1000}
+        height={500}
+        style={{
+          maxWidth: '100%',
+          /* height: 'auto', */
+          /* objectFit: 'contain' */
+        }}
+        src={data.image}
+        alt={data.title}
+      />
       <p>{data.description}</p>
       
+      <input type="email" /><button>Submit</button>
     </div>
   );
 };

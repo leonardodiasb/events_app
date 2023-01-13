@@ -1,14 +1,15 @@
-import Image from 'next/image';
 import Link from 'next/link';
+import Image from 'next/image';
 
-export const HomePage = ({ data }) => {
+export const CatEvent = ({ data }) => {
   return (
-    <div className='home_body'>
-      {data.map((ev) => (
-        <Link className='card' href={`/events/${ev.id}`} key={ev.id}>
-          <div className='image'>
+    <div className='cat_events'>
+      <h1>Events in {data.city}</h1>
+      <div className='content'>
+        {data.map((ev) => (
+          <Link className='card' href={`/events/${ev.city}/${ev.id}`} key={ev.id} >
             <Image
-              width={600}
+              width={300}
               height={300}
               style={{
                 maxWidth: '100%',
@@ -18,13 +19,11 @@ export const HomePage = ({ data }) => {
               src={ev.image}
               alt={ev.title}
             />
-          </div>
-          <div className='content'>
             <h2>{ev.title}</h2>
             <p>{ev.description}</p>
-          </div>
-        </Link>
-      ))}
+          </Link>
+        ))}
+      </div>
     </div>
   );
 };
