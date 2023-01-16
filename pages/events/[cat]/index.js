@@ -1,8 +1,8 @@
 import { CatEvent } from '../../../src/components/Events/catEvent';
 
-const EventsCatPage = ({ data }) => {
+const EventsCatPage = ({ data, pageName }) => {
   return (
-    <CatEvent data={data} />
+    <CatEvent data={data} pageName={pageName} />
   );
 };
 
@@ -31,5 +31,5 @@ export async function getStaticProps(context) {
    
   const data = allEvents.filter((ev) => ev.city === id);
 
-  return { props: { data }};
+  return { props: { data, pageName: id } };
 }
