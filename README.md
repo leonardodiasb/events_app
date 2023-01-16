@@ -34,3 +34,10 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+suggestions >
+  1 - add more style(responsive)
+  2 - update title and data(specific not lorem)(pass props to main layout so each page can have a specific title and image)
+  3 - add more details to single page
+  4 - more events sections or categories
+  5 - head metadata
